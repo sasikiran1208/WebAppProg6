@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Actor Guess</title>
+  </head>
+
+  <body>
+    <h2>Actors by Sasi Kiran Kodali</h2>
+
+    <form>
+      <label for="secretActor">Peter Pan</label>
+      <input type="password" id="secretActor" value="Robin Williams" />
+      <br />
+
+      <label for="actorGuess">Who is the actor</label>
+      <input type="text" id="actorGuess" />
+      <br />
+
+      <input type="button" onclick="checkActor()" value="Check the guess" />
+    </form>
+
+    <p id="result">Correct: 0 Not Correct: 0</p>
+
+    <script>
+      let correct = 0;
+      let notCorrect = 0;
+
+      function checkActor() {
+        actor = document.getElementById("secretActor").value;
+        guess = document.getElementById("actorGuess").value;
+
+        if (actor == guess) {
+          correct = correct + 1;
+          alert("That's right");
+        } else {
+          notCorrect = notCorrect + 1;
+          alert("Better luck next time");
+        }
+
+        document.getElementById("result").innerHTML =
+          "Correct: " + correct + " Not Correct: " + notCorrect;
+      }
+    </script>
+  </body>
+</html>
