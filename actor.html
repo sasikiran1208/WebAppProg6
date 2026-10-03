@@ -20,10 +20,20 @@
     </form>
 
     <p id="result">Correct: 0 Not Correct: 0</p>
+    <div>
+      <img
+        id="foodPic"
+        src="dosa.jpg"
+        width="150"
+        height="150"
+        onclick="updatePic()"
+      />
+    </div>
 
     <script>
       let correct = 0;
       let notCorrect = 0;
+      let usePic = 1;
 
       function checkActor() {
         actor = document.getElementById("secretActor").value;
@@ -39,6 +49,24 @@
 
         document.getElementById("result").innerHTML =
           "Correct: " + correct + " Not Correct: " + notCorrect;
+      }
+      function updatePic() {
+        switch (usePic) {
+          case 1:
+            document.getElementById("foodPic").src = "idli.jpg";
+            usePic = 2;
+            break;
+
+          case 2:
+            document.getElementById("foodPic").src = "kebab.jpg";
+            usePic = 3;
+            break;
+
+          case 3:
+            document.getElementById("foodPic").src = "dosa.jpg";
+            usePic = 1;
+            break;
+        }
       }
     </script>
   </body>
