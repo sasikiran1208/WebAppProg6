@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sales Computation</title>
+  </head>
+
+  <body>
+    <h2>Sasi Kiran Kodali sales computation</h2>
+
+    <form>
+      <label for="numberItems">Enter number items</label>
+      <input type="number" id="numberItems" value="1" />
+      <br />
+
+      <label for="itemCost">Enter the cost of one item</label>
+      <input type="number" id="itemCost" value="20.0" />
+      <br />
+
+      <label for="numberForDiscount">Enter number to get discount</label>
+      <input type="number" id="numberForDiscount" value="10" />
+      <br />
+
+      <label for="discountRate">Enter the discount rate</label>
+      <input type="number" id="discountRate" value="0.15" />
+      <br />
+
+      <input type="button" onclick="doDiscount()" value="Show costs" />
+    </form>
+
+    <p id="result">Costs will be displayed here</p>
+
+    <script>
+      function doDiscount() {
+        let number = Number(document.getElementById("numberItems").value);
+        let cost = Number(document.getElementById("itemCost").value);
+        let discountAt = Number(
+          document.getElementById("numberForDiscount").value,
+        );
+        let discountRate = Number(
+          document.getElementById("discountRate").value,
+        );
+
+        let costs = "";
+
+        for (let i = 1; i <= 5; i++) {
+          let checkCount = i * number;
+          let totalCost;
+
+          if (checkCount <= discountAt) {
+            totalCost = checkCount * cost;
+          } else {
+            totalCost =
+              discountAt * cost +
+              (checkCount - discountAt) * cost * (1 - discountRate);
+          }
+
+          costs += "checkCount " + checkCount + " is " + totalCost + "; ";
+        }
+
+        document.getElementById("result").innerHTML = "Costs are: " + costs;
+      }
+    </script>
+  </body>
+</html>
