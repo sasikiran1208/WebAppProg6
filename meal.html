@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Meal Planner</title>
+  </head>
+
+  <body>
+    <h2>Sasi Kiran Kodali meal planner</h2>
+
+    <!-- Part 7 -->
+    <form>
+      <input type="checkbox" id="breakfast" value="True" />
+      <label for="breakfast">Breakfast</label>
+      <br />
+
+      <input type="checkbox" id="lunch" value="False" />
+      <label for="lunch">Lunch</label>
+      <br />
+
+      <input type="checkbox" id="dinner" value="True" />
+      <label for="dinner">Dinner</label>
+      <br />
+
+      <input type="button" value="Meal Plan Choices" onclick="choices()" />
+    </form>
+
+    <br />
+
+    <!-- Part 8 -->
+    <form>
+      <label for="cuisine">Enter cuisine type</label>
+      <input type="text" id="cuisine" value="Italian" />
+      <br />
+
+      <label for="beverage">Enter beverage choice</label>
+      <input type="text" id="beverage" value="water" />
+      <br />
+
+      <input
+        type="button"
+        value="Update the meal plan"
+        onclick="updateMeal()"
+      />
+    </form>
+
+    <p id="mealResult">Meal plan will display here</p>
+
+    <script>
+      let my_meal_plan = {};
+
+      function choices() {
+        my_meal_plan = {};
+
+        my_meal_plan.breakfast = document.getElementById("breakfast").checked;
+
+        my_meal_plan.lunch = document.getElementById("lunch").checked;
+
+        my_meal_plan.dinner = document.getElementById("dinner").checked;
+
+        document.getElementById("mealResult").innerHTML =
+          JSON.stringify(my_meal_plan);
+      }
+
+      function updateMeal() {
+        let cuisine = document.getElementById("cuisine").value;
+
+        let beverage = document.getElementById("beverage").value;
+
+        my_meal_plan["cuisine"] = cuisine;
+        my_meal_plan["beverage"] = beverage;
+
+        document.getElementById("mealResult").innerHTML =
+          JSON.stringify(my_meal_plan);
+      }
+    </script>
+  </body>
+</html>
