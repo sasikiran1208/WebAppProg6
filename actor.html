@@ -1,69 +1,115 @@
 <!doctype html>
 <html>
   <head>
-    <title>Actor Guess</title>
+    <title>Actors</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
 
-  <body>
-    <h2>Actors by Sasi Kiran Kodali</h2>
+  <body class="container mt-4">
+    <h2 class="mb-4">Actors by Sasi Kiran Kodali</h2>
 
     <form>
-      <label for="secretActor">Peter Pan</label>
-      <input type="password" id="secretActor" value="Robin Williams" />
-      <br />
+      <div class="mb-3">
+        <label for="secretActor" class="form-label">Peter Pan</label>
+        <input
+          type="password"
+          id="secretActor"
+          value="Robin Williams"
+          class="form-control"
+        />
+      </div>
 
-      <label for="actorGuess">Who is the actor</label>
-      <input type="text" id="actorGuess" />
-      <br />
+      <div class="mb-3">
+        <label for="guessActor" class="form-label">Who is the actor</label>
+        <input type="text" id="guessActor" class="form-control" />
+      </div>
 
-      <input type="button" onclick="checkActor()" value="Check the guess" />
+      <input
+        type="button"
+        id="checkButton"
+        value="Check the guess"
+        onclick="checkActor()"
+        class="btn btn-primary"
+      />
     </form>
 
-    <p id="result">Correct: 0 Not Correct: 0</p>
+    <br />
+
+    <!-- Bonus: use a div for results -->
+    <div id="result" class="alert alert-secondary">
+      Correct: 0 Not Correct: 0
+    </div>
+
+    <hr />
+
+    <!-- Part 4 image -->
     <div>
       <img
-        id="foodPic"
-        src="dosa.jpg"
+        id="foodImage"
+        src="kebab.jpg"
         width="150"
         height="150"
         onclick="updatePic()"
+        style="cursor: pointer"
+        alt="Food image"
       />
     </div>
 
     <script>
       let correct = 0;
       let notCorrect = 0;
-      let usePic = 1;
 
       function checkActor() {
-        actor = document.getElementById("secretActor").value;
-        guess = document.getElementById("actorGuess").value;
+        let secret = document.getElementById("secretActor").value;
 
-        if (actor == guess) {
-          correct = correct + 1;
+        let guess = document.getElementById("guessActor").value;
+
+        if (secret == guess) {
+          correct++;
           alert("That's right");
         } else {
-          notCorrect = notCorrect + 1;
+          notCorrect++;
           alert("Better luck next time");
         }
 
         document.getElementById("result").innerHTML =
           "Correct: " + correct + " Not Correct: " + notCorrect;
+
+        // Bonus requirement
+        if (notCorrect > 10) {
+          document
+            .getElementById("checkButton")
+            .setAttribute("onclick", "tooManyWrong()");
+        }
       }
+
+      function tooManyWrong() {
+        alert("Sorry, too many wrong guesses.");
+      }
+
+      let usePic = 1;
+
       function updatePic() {
+        let image = document.getElementById("foodImage");
+
         switch (usePic) {
           case 1:
-            document.getElementById("foodPic").src = "idli.jpg";
+            image.src = "dosa.jpg";
             usePic = 2;
             break;
 
           case 2:
-            document.getElementById("foodPic").src = "kebab.jpg";
+            image.src = "idli.jpg";
             usePic = 3;
             break;
 
           case 3:
-            document.getElementById("foodPic").src = "dosa.jpg";
+            image.src = "kebab.jpg";
             usePic = 1;
             break;
         }
